@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { MyToDoItem } from "../components/myToDoItem/MyToDoItem"
 import { MyToDoList } from "../components/myToDoList/MyToDoList"
+import { UserContext } from "../contexts/userContext"
 import { ToDoItem } from "../domain/todoItem"
 
 const testTodoList: ToDoItem[] = [
@@ -20,6 +21,7 @@ const testTodoList: ToDoItem[] = [
 ]
 
 export const TodoPage = () => {
+  const userContext = useContext(UserContext)
   const [itemList, setItemList] = useState(testTodoList)
   const [selectedItem, setSelectedItem] = useState<ToDoItem>()
   const [newItemText, setNewItemText] = useState('new item')
@@ -50,6 +52,7 @@ export const TodoPage = () => {
   return (
     <>
       <h2>Todo Page</h2>
+      <p>Hallo lieber {userContext.userName}</p>
       <input type="text" onChange={handleTextChange} />
       <button onClick={handleClickNewItem}>Add item</button>
       <MyToDoList listItems={itemList} onSelectItem={handleSelectItem} />
