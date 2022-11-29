@@ -5,6 +5,7 @@ import { UserContextProvider } from "./contexts/userContextProvider"
 import { MyLayout } from "./MyLayout"
 import { HomePage } from "./pages/HomePage"
 import { LoginPage } from "./pages/LoginPage"
+import { PokemonPage } from "./pages/PokemonPage"
 import { TodoPage } from "./pages/TodoPage"
 
 
@@ -17,6 +18,7 @@ export const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/todos" element={<TodoPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/pokemon" element={<PokemonPage />} />
           </Routes>
           <h1>Welcome to the Commerzbank Todo List React App</h1>
         </MyLayout>

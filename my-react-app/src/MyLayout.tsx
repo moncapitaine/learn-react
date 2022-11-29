@@ -13,6 +13,7 @@ export const MyLayout: React.FC<MyLayoutProps> = ({children}) => {
         <Link to="/">Homepage</Link>
         <Link to="/todos">Todos</Link>
         <Link to="/login">Login</Link>
+        <Link to="/pokemon">Pokemon</Link>
       </header>
       <main>
         {children}

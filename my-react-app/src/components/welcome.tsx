@@ -6,7 +6,7 @@ export const Welcome = () => {
   const { userName } = useContext(UserContext)
   return (
     <>
-      <h2>Liebster Kunde {userName}...</h2>
+      <h2>Allerliebster Kunde {userName}...</h2>
       <p>Laber, Bauchpinsel,...</p>
     </>
   )
