@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import { UserContext } from "../contexts/userContext"
 
 export type UserRole = 'admin' | 'user' | undefined
 
-export interface LoginPageProps {
-  userRole: 'admin' | 'user' | undefined
-  onLoginChange: (userName: string | undefined, role: 'admin' | 'user' | undefined) => void
-}
+export const LoginPage: React.FC<{}> = () => {
 
-export const LoginPage: React.FC<LoginPageProps> = ({userRole, onLoginChange}) => {
+  const { role: userRole, setLoginData } = useContext(UserContext)
+
   const handleLoginClick = (newRole: UserRole) => {
-    onLoginChange(`username for ${newRole}`, newRole)
+    // onLoginChange(`username for ${newRole}`, newRole)
+    setLoginData({userName: `username for ${newRole}`, role: newRole})
   }
-  
+
   useEffect(() => {
     console.log('role changed', userRole)
   }, [userRole])
