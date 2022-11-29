@@ -7,7 +7,6 @@ export interface MyToDoListProps {
 
 export const MyToDoList: React.FC<MyToDoListProps> = ({ listItems, onSelectItem }) => {
   const handleItemSelect = (item: ToDoItem) => {
-    console.log('handleSelectItem from MyToDoList', item)
     onSelectItem(item)
   }
   return (

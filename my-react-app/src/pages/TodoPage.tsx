@@ -1,4 +1,4 @@
-import { ReactSVG, useState } from "react"
+import { useEffect, useState } from "react"
 import { MyToDoItem } from "../components/myToDoItem/MyToDoItem"
 import { MyToDoList } from "../components/myToDoList/MyToDoList"
 import { ToDoItem } from "../domain/todoItem"
@@ -29,8 +29,7 @@ export const TodoPage = () => {
   }
 
   const handleClickNewItem = () => {
-    itemList.push({id: `${itemList.length + 1}`, name: newItemText})
-    setItemList([...itemList])
+    setItemList([...itemList, { id: `${itemList.length + 1}`, name: newItemText } ])
   }
 
   const handleDeleteItem = (itemToRemove: ToDoItem) => {
@@ -41,6 +40,12 @@ export const TodoPage = () => {
   const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewItemText(e.target.value)
   }
+
+  useEffect(() => {
+    console.log('inside useEffect, only if selected item changed', selectedItem)
+  }, [selectedItem])
+
+  console.log('ToDoPage re-render')
 
   return (
     <>
