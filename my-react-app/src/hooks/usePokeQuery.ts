@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { wait } from "../tools/wait"
 
 export interface Pokemon {
   name: string
@@ -11,12 +12,7 @@ export interface PokemonQueryResult {
   loading: boolean
 }
 
-const wait = async (timeInMilliseconds: number): Promise<void> => {
-  const result = new Promise<void>((resolve, _reject) => {
-    setTimeout(() => resolve(undefined), timeInMilliseconds)
-  })
-  return result
-}
+
 
 const fetchPokemon = async (): Promise<Pokemon[]> => {
   const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0')
