@@ -13,7 +13,7 @@ export const MyToDoItem: React.FC<MyToDoItemProps> = ({item, onDeleteItem}) => {
     onDeleteItem(item)
   }
   return (
-    <form>
+    <form name="Todo item form">
       <h2>Item {item.name}</h2>
       <button onClick={(e) => handleDeleteItem(e)}>Delete item</button>
     </form>
