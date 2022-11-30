@@ -8,10 +8,13 @@ export const PokemonPage = () => {
   if (loading) {
     return <div>Loading...</div>
   }
+  
+  if (error) {
+    return <div style={{border: 'solid 1px red'}}>{error}</div>
+  }
 
   return (
     <ul>
-      { error && <li>{error}</li>}
       {pokemonList.map((pokemon, index) => (<li key={index}>
         <h3>{pokemon.name}</h3>
         <a href={pokemon.url} target="_blank">Details</a>

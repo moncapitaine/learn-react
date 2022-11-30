@@ -6,13 +6,6 @@ export interface Pokemon {
   url: string
 }
 
-export interface PokemonQueryResult {
-  pokemonList: Pokemon[]
-  error: string | undefined
-  loading: boolean
-}
-
-
 
 const fetchPokemon = async (): Promise<Pokemon[]> => {
   const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=10&offset=0')
@@ -20,15 +13,21 @@ const fetchPokemon = async (): Promise<Pokemon[]> => {
   return data.results
 }
 
-export const usePokeQuery = (): PokemonQueryResult => {
+export interface PokemonQueryResult {
+  pokemonList: Pokemon[]
+  error: string | undefined
+  loading: boolean
+}
+
+
+export const usePokeQuery = (timeoutMilliseconds: number = 500): PokemonQueryResult => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([])
   const [error, setError] = useState<string | undefined>()
   const [loading, setLoading] = useState(false)
   const loadPokemons = async () => {
     try {
       setLoading(true)
-      await wait(4000) // will be awaited
-      // wait(5000) // will not be awaited for
+      await wait(timeoutMilliseconds)
       const fetchedItems = await fetchPokemon()
       setPokemonList(fetchedItems)
       setError(undefined)
@@ -43,9 +42,10 @@ export const usePokeQuery = (): PokemonQueryResult => {
   useEffect(() => {
     loadPokemons()
   }, [])
-  return ({
+
+  return {
     pokemonList,
     loading,
     error
-  })
+  }
 }
