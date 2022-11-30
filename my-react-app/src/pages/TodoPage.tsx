@@ -45,7 +45,13 @@ export const TodoPage = () => {
 
   useEffect(() => {
     console.log('inside useEffect, only if selected item changed', selectedItem)
+    return () => console.log('useEffect termination', selectedItem)
   }, [selectedItem])
+
+  useEffect(() => {
+    console.log('activation of ToDoPage')
+    return () => console.log('deactivation of ToDoPage')
+  }, [])
 
   console.log('ToDoPage re-render')
 

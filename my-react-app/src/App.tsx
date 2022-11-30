@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { UserContext, UserContextData } from "./contexts/userContext"
 import { UserContextProvider } from "./contexts/userContextProvider"
 import { MyLayout } from "./MyLayout"
+import { DemoUseEffectPromise } from "./pages/DemoUseEffectPromise"
 import { HomePage } from "./pages/HomePage"
 import { LoginPage } from "./pages/LoginPage"
 import { PokemonPage } from "./pages/PokemonPage"
@@ -19,6 +20,7 @@ export const App = () => {
             <Route path="/todos" element={<TodoPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/pokemon" element={<PokemonPage />} />
+            <Route path="/DemoUseEffectPromise" element={<DemoUseEffectPromise />} />
           </Routes>
           <h1>Welcome to the Commerzbank Todo List React App</h1>
         </MyLayout>
