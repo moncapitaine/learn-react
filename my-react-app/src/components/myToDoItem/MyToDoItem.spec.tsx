@@ -1,6 +1,7 @@
-import { vi } from 'vitest'
+import { vi, it, describe, expect } from 'vitest'
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
+
 import { ToDoItem } from '../../domain/todoItem';
 import { MyToDoItem } from './MyToDoItem';
 
@@ -9,7 +10,7 @@ describe('the MyToDoItem', () => {
     id: 'testid',
     name: 'testname'
   }
-  const handleDeleteItem = vi.fn((item) => console.log(item))
+  const handleDeleteItem = vi.fn((item) => console.log('handleDeleteItem mock', item))
   it('renders an accessible form...', () => {
     render(<MyToDoItem item={testItem} onDeleteItem={handleDeleteItem} />)
     const myForm = screen.getByRole('form')
