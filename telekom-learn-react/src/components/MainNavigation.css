@@ -3,3 +3,15 @@ ul.main-navigation {
   list-style: none;
   gap: 1em;
 }
+
+ul.main-navigation a {
+  color: black;
+  text-decoration: none;
+  
+}
+
+ul.main-navigation li {
+  border: solid 1px grey;
+  padding: 1em;
+  border-radius: 12px;
+}
