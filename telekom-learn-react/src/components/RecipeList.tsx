@@ -1,15 +1,8 @@
+import { Typography, TextField, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material"
 import { useContext, useMemo, useState } from "react"
 import { CookingContext } from "../context/cookingContext"
 import { Recipe } from "../domain/recipe"
-import TextField from '@mui/material/TextField'
-import Typography from '@mui/material/Typography'
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';export interface RecipeListProps {
+export interface RecipeListProps {
   list: Recipe[]
   children?: JSX.Element
 }

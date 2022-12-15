@@ -14,5 +14,5 @@ export interface Ingredient {
 export interface PreparationStep {
   sequenceNumner: number
   name: string
-  durationMinutes: number
+  durationMinutes?: number
 }
