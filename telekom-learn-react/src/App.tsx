@@ -6,6 +6,7 @@ import { Banner } from './components/Banner'
 import { MainNavigation } from './components/MainNavigation'
 import { CookingContext, CookingContextProvider } from './context/cookingContext'
 import { UserContext, UserContextProvider } from './context/userContext'
+import { FreeMealPage } from './pages/FreeMealPage'
 import { HomePage } from './pages/HomePage'
 import { NewRecipePage } from './pages/NewRecipePage'
 import { NotFoundPage } from './pages/NotFoundPage'
@@ -28,7 +29,7 @@ export const App = ():JSX.Element => {
                 <Route path='/recipes/new' element={<NewRecipePage />} />
                 <Route path='/recipes/:recipeId' element={<RecipeDetailsPage />} />
                 <Route path='/pokemon' element={<PokePage />} />
-
+                <Route path='/freemeal' element={<FreeMealPage />} />
                 <Route path='*' element={<NotFoundPage />} />
               </Routes>
           </main>

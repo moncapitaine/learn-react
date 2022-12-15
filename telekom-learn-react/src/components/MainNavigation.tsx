@@ -9,6 +9,8 @@ export const MainNavigation = () => {
   return (<ul className="main-navigation">
       <li><Button component={Link}to="/">Homepage</Button></li>
       <li><Button component={Link} to="/newRecipe">Neu</Button></li>
+      <li><Button component={Link} to="/freemeal">Free</Button></li>
+
       <li><Button onClick={() => setUserName(userName ? undefined : 'Michael')}>{userName ? 'logout' : 'login'}</Button></li>
     </ul>)
 }

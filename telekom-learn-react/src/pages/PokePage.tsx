@@ -1,10 +1,6 @@
-import { Avatar, List, ListItem, ListItemAvatar, ListItemText } from "@mui/material"
-import { useEffect, useState } from "react"
+import { List } from "@mui/material"
 import { PokemonListItem } from "../components/PokemonListItem"
-import { Pokemon } from "../domain/pokemon"
 import { usePokemon } from "../hooks/usePokemon"
-
-
 
 export const PokePage = () => {
   const { isLoading, count, list } = usePokemon()
