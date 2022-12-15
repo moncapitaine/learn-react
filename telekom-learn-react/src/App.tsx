@@ -9,6 +9,7 @@ import { UserContext, UserContextProvider } from './context/userContext'
 import { HomePage } from './pages/HomePage'
 import { NewRecipePage } from './pages/NewRecipePage'
 import { NotFoundPage } from './pages/NotFoundPage'
+import { PokePage } from './pages/PokePage'
 import { RecipeDetailsPage } from './pages/RecipeDetailsPage'
 
 export const App = ():JSX.Element => {
@@ -26,6 +27,8 @@ export const App = ():JSX.Element => {
                 <Route path='/' element={<HomePage />} />
                 <Route path='/recipes/new' element={<NewRecipePage />} />
                 <Route path='/recipes/:recipeId' element={<RecipeDetailsPage />} />
+                <Route path='/pokemon' element={<PokePage />} />
+
                 <Route path='*' element={<NotFoundPage />} />
               </Routes>
           </main>
