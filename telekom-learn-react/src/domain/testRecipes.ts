@@ -24,15 +24,15 @@ export const testRecipes: Recipe[] = [
     ],
     steps: [
       {
-        sequenceNumner: 1,
+        sequenceNumber: 1,
         name: 'Fleisch klopfen'
       },
       {
-        sequenceNumner: 2,
+        sequenceNumber: 2,
         name: 'Panieren'
       },
       {
-        sequenceNumner: 3,
+        sequenceNumber: 3,
         name: 'Braten'
       }
     ]

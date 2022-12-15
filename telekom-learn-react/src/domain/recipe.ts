@@ -12,7 +12,7 @@ export interface Ingredient {
 }
 
 export interface PreparationStep {
-  sequenceNumner: number
+  sequenceNumber: number
   name: string
   durationMinutes?: number
 }
