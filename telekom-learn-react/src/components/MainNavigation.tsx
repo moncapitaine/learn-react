@@ -8,6 +8,6 @@ export const MainNavigation = () => {
   return (<ul className="main-navigation">
       <li><Link to="/">Homepage</Link></li>
       <li><Link to="/newRecipe">Neues Rezept anlegen</Link></li>
-      <li><button onClick={() => setUserName(userName ? undefined : 'Michael')}>{userName ? 'logout' : 'login'}</button></li>
+      <li><button className='btn btn-primary' onClick={() => setUserName(userName ? undefined : 'Michael')}>{userName ? 'logout' : 'login'}</button></li>
     </ul>)
 }

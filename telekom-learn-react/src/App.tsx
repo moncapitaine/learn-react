@@ -9,14 +9,14 @@ import { UserContext, UserContextProvider } from './context/userContext'
 import { HomePage } from './pages/HomePage'
 import { NewRecipePage } from './pages/NewRecipePage'
 import { NotFoundPage } from './pages/NotFoundPage'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 export const App = ():JSX.Element => {
   return (
     <BrowserRouter>
       <UserContextProvider>
         <CookingContextProvider>
           <>
-          <header className='header'>
+          <header className='header container'>
             <Banner />
             <MainNavigation />
           </header>
