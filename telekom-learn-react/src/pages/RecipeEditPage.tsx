@@ -1,5 +1,5 @@
 import { Block } from "@mui/icons-material"
-import { Box, Button, List, ListItem, Stack, TextField } from "@mui/material"
+import { Box, Button, CircularProgress, List, ListItem, Stack, TextField } from "@mui/material"
 import { useFieldArray, useForm } from "react-hook-form"
 import { Navigate, useNavigate, useParams } from "react-router"
 import { Recipe } from "../domain/recipe"
@@ -10,29 +10,39 @@ export const RecipeEditPage = () => {
   const navigate = useNavigate()
   const { isLoading, recipe, save } = useRecipe(recipeId)
 
-  const { control, register, handleSubmit } = useForm({ defaultValues: recipe })
+  const { control, register, handleSubmit, formState } = useForm({ defaultValues: recipe })
   const { fields: ingredientFields, append: appendIngredient, remove: removeIngredient } = useFieldArray({control, name: 'ingredients'})
   const onSubmit = (data: Recipe) => {
-    console.log('submitted', data)
     save(data)
     navigate(`/recipes/${recipeId}`)
   }
 
+  if (isLoading) {
+    return <CircularProgress />
+  }
+
   return (<form onSubmit={handleSubmit(onSubmit)}>
     <Stack spacing={3}>
-      <TextField label="Name" {...register("name", { required: true })} />
+      { formState.errors.name && (<Box>
+          <pre>
+            {formState.errors.name && "Name ist Pflicht"}
+          </pre>
+      </Box>)}
+      <TextField label="Name" {...register("name", { required: true })}/>
       <TextField label="Beschreibung" {...register("description", { required: true })} />
       <Box>
         <Button onClick={() => appendIngredient({id: '', name: 'Neue Zutat'})}>Neue Zutat</Button>
         <List>
-          {ingredientFields.map((field, index) => (<ListItem>
-            <TextField label="Id" {...register(`ingredients.${index}.id`, { required: true })} />
-            <TextField label="Name" {...register(`ingredients.${index}.name`, { required: true })} />
-            <Button onClick={() => removeIngredient(index) }>Entfernen</Button>
+          {ingredientFields.map((field, index) => (<ListItem key={index}>
+            <Stack spacing={2} direction='row'>
+              <TextField label="Id" {...register(`ingredients.${index}.id`, { required: true })} />
+              <TextField label="Name" {...register(`ingredients.${index}.name`, { required: true })} />
+              <Button onClick={() => removeIngredient(index) }>Entfernen</Button>
+            </Stack>
           </ListItem>))}
         </List>
       </Box>
-      <Button type='submit'>Submit</Button>
+      <Button type='submit'>Speichern</Button>
     </Stack>
   </form>)
 }

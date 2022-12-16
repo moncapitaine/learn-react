@@ -1,14 +1,17 @@
-import { Box, Button, Card, CardContent, Grid, List, ListItem, Stack, Typography } from "@mui/material"
+import { Box, Button, Card, CardContent, CircularProgress, Grid, List, ListItem, Stack, Typography } from "@mui/material"
 import { useMemo } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { testRecipes } from "../domain/testRecipes"
+import { useRecipe } from "../hooks/useRecipe"
 
 export const RecipeDetailsPage = () => {
   const { recipeId } = useParams()
+  const { recipe, isLoading } = useRecipe(recipeId)
   const navigate = useNavigate()
 
-  const recipe = useMemo(() => testRecipes.find((recipe) => recipe.id === recipeId), [recipeId])
-
+  if (isLoading) {
+    return <CircularProgress />
+  }
   if (!recipe) {
     return (<Typography>Rezept {recipeId} nicht gefunden</Typography>)
   }

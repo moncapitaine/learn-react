@@ -3,9 +3,12 @@ import { Recipe } from "../domain/recipe"
 import { testRecipes } from "../domain/testRecipes"
 
 export const useRecipe = (recipeId?: string) => {
-  const [isLoading, ] = useState(false)
+  const [isLoading, setIsLoading ] = useState(false)
 
-  const recipe = useMemo(() => testRecipes.find((recipe) => recipe.id === recipeId), [recipeId])
+  const recipe = useMemo(() => {
+    setIsLoading(true)
+    setTimeout(() => setIsLoading(false), 1000)
+    return testRecipes.find((recipe) => recipe.id === recipeId)}, [recipeId])
 
   const save = (newData: Recipe) => {
     const index = testRecipes.findIndex((r) => newData.id === r.id )
