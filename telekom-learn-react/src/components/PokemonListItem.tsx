@@ -7,9 +7,8 @@ export interface PokemonListItemProps {
 }
 
 export const PokemonListItem: React.FC<PokemonListItemProps> = ({pokemon}) => {
-
   const { imageSrc } = usePokemonDetails(pokemon.url)
-
+console.log('re-render list item', pokemon, imageSrc)
   return (<ListItem>
     <ListItemAvatar>
       <Avatar src={imageSrc} />

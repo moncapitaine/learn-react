@@ -3,10 +3,6 @@ export interface Pokemon {
   url: string
 }
 
-export interface PokemonDetails {
-  sprites: Record<string, string>
-}
-
 /*
 
 const x: Record<string, string> = {

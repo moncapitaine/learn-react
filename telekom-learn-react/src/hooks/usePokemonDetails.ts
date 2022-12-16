@@ -1,26 +1,20 @@
 import { useEffect, useState } from "react"
-import { PokemonDetails } from "../domain/pokemon"
-
-const fetchDetails = async (url: string) => {
-  const response = await fetch(url)
-  const data = await response.json()
-  return data as PokemonDetails
+interface PokemonApiDetails {
+  sprites: Record<string, string | null>
+}
+const fetchDetailsAsync = async (detailsUrl: string) => {
+  const response = await fetch(detailsUrl)
+  return await response.json() as PokemonApiDetails
 }
 
 export const usePokemonDetails = (detailsUrl: string) => {
-
   const [imageSrc, setImageSrc] = useState<string | undefined>()
-  const [sprites, setSprites] = useState<Record<string, string>>({})
+  const [sprites, setSprites] = useState<Record<string, string | null>>({})
 
   useEffect(() => {
-    fetchDetails(detailsUrl).then((details) => {
-      setSprites(details.sprites)
-      const spriteKeys = Object.keys(details.sprites)
-      if (spriteKeys.length < 1) {
-        setImageSrc('/logo.svg')
-      } else {
-        setImageSrc(details.sprites[spriteKeys[0]])
-      }
+    fetchDetailsAsync(detailsUrl).then((apiDetails) => {
+      setSprites(apiDetails.sprites)
+      setImageSrc(apiDetails.sprites['front_default'] ?? '/logo.svg')
     })
   }, [detailsUrl])
 
