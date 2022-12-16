@@ -1,14 +1,26 @@
-import { SolarPower } from '@mui/icons-material'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { FreeMeal, FreeMealIngredient } from '../domain/freeMeal'
 
-const fetchData = async (search: string): Promise<FreeMeal[]> => {
+interface MealApiData {
+  meals: ({
+    idMeal: string
+    strMeal: string
+    strMealThumb?: string
+    strImageSource?: string
+    strInstructions?: string
+    strCategory: string
+    strSource?: string
+  } & Record<string, string>)[]
+}
+
+const fetchDataAsync = async (search: string): Promise<FreeMeal[]> => {
   const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`)
-  const data = await response.json()
-  if (!data.meals) {
+  const apiData = await response.json() as MealApiData
+  if (!apiData.meals) {
     return []
   }
-  return data.meals.map((apiMeal: Record<string, string | null>) => {
+  return apiData.meals.map((apiMeal) => {
+    
     const ingredients = Object.keys(apiMeal)
       .filter((key) => key.startsWith('strIngredient'))
       .map((ingredientKey) => ({
@@ -17,13 +29,13 @@ const fetchData = async (search: string): Promise<FreeMeal[]> => {
       })).filter((ingredient) => (ingredient.name ?? '').length > 0 ) as FreeMealIngredient[]
 
     return {
-      id: apiMeal['idMeal'],
-      name: apiMeal['strMeal'],
-      category: apiMeal['category'],
-      instructions: apiMeal['strInstructions'],
+      id: apiMeal.idMeal,
+      name: apiMeal.strMeal,
+      category: apiMeal.strCategory,
+      instructions: apiMeal.strInstructions,
       ingredients,
-      thumbnailUrl: apiMeal['strMealThumb'],
-      image: apiMeal['strImageSource']
+      thumbnailUrl: apiMeal.strMealThumb,
+      image: apiMeal.strImageSource
     }
   })
 }
@@ -31,10 +43,10 @@ const fetchData = async (search: string): Promise<FreeMeal[]> => {
 export const useFreeMealSearch = (search: string) => {
   const [meals, setMeals] = useState<FreeMeal[]>([])
   const [isLoading, setIsLoading] = useState(false)
-console.log('useFree..', search)
+
   useEffect(() => {
     setIsLoading(true)
-    fetchData(search).then((data) => {
+    fetchDataAsync(search).then((data) => {
       setMeals(data)
       setIsLoading(false)
     })

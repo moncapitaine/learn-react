@@ -3,8 +3,8 @@ export interface FreeMeal {
   name: string
   category: string
   ingredients: FreeMealIngredient[]
-  thumbnailUrl: string
-  instructions: string
+  thumbnailUrl?: string
+  instructions?: string
 }
 
 export interface FreeMealIngredient {
