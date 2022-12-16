@@ -5,6 +5,7 @@ import { PokePage } from './PokePage'
 
 describe('the poke page', () => {
   test('finds 12 total', async () => {
+    render(<PokePage />)
     const headline = await screen.findByRole('heading', { name: /pokepage for 12 pokemons/i })
     expect(headline).toBeVisible()
   })
