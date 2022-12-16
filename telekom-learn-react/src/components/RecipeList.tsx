@@ -1,5 +1,5 @@
 import { Typography, TextField, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Button } from "@mui/material"
-import { useContext, useMemo, useState } from "react"
+import { useContext, useEffect, useMemo, useState } from "react"
 import { useNavigate } from "react-router"
 import { CookingContext } from "../context/cookingContext"
 import { Recipe } from "../domain/recipe"
@@ -20,6 +20,11 @@ export const RecipeList: React.FC<RecipeListProps> = ({ list, children }) => {
   const handleRowClick = (recipe: Recipe) => {
     navigate(`/recipes/${recipe.id}`)
   }
+
+  useEffect(() => {
+    console.log('recipeFilterText')
+    console.log(recipeFilterText)
+  }, [recipeFilterText])
 
   return (<div>
     <Typography variant="h4">Recipe List has {internalList.length} items</Typography>
