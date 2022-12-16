@@ -12,6 +12,7 @@ import { NewRecipePage } from './pages/NewRecipePage'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { PokePage } from './pages/PokePage'
 import { RecipeDetailsPage } from './pages/RecipeDetailsPage'
+import { RecipeEditPage } from './pages/RecipeEditPage'
 
 export const App = ():JSX.Element => {
   return (
@@ -28,6 +29,7 @@ export const App = ():JSX.Element => {
                 <Route path='/' element={<HomePage />} />
                 <Route path='/recipes/new' element={<NewRecipePage />} />
                 <Route path='/recipes/:recipeId' element={<RecipeDetailsPage />} />
+                <Route path='/recipes/:recipeId/edit' element={<RecipeEditPage />} />
                 <Route path='/pokemon' element={<PokePage />} />
                 <Route path='/freemeal' element={<FreeMealPage />} />
                 <Route path='*' element={<NotFoundPage />} />

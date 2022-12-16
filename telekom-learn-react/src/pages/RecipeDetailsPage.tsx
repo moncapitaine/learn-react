@@ -1,10 +1,11 @@
-import { Box, Card, CardContent, Grid, List, ListItem, Stack, Typography } from "@mui/material"
+import { Box, Button, Card, CardContent, Grid, List, ListItem, Stack, Typography } from "@mui/material"
 import { useMemo } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { testRecipes } from "../domain/testRecipes"
 
 export const RecipeDetailsPage = () => {
   const { recipeId } = useParams()
+  const navigate = useNavigate()
 
   const recipe = useMemo(() => testRecipes.find((recipe) => recipe.id === recipeId), [recipeId])
 
@@ -14,6 +15,7 @@ export const RecipeDetailsPage = () => {
 
   return (<section>
     <Stack spacing={2}>
+      <Button onClick={() => navigate(`/recipes/${recipeId}/edit`)}>Edit</Button>
       <Card variant="elevation">
         <CardContent>
           <Typography variant='h4'>{recipe?.name}</Typography>
