@@ -6,7 +6,7 @@ export const useRecipes = () => {
 
   useEffect(() => {
     setIsLoading(true)
-    setTimeout(() => setIsLoading(false), 1000)}, [])
+    setTimeout(() => setIsLoading(false), 300)}, [])
 
   return { isLoading, recipes: testRecipes }
 }
