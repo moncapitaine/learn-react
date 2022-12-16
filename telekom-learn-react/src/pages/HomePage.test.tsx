@@ -1,11 +1,12 @@
 import { jsx } from '@emotion/react'
-import { render, screen, waitFor } from '@testing-library/react'
+import { findAllByRole, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { BrowserRouter } from 'react-router-dom'
 import { describe, test } from 'vitest'
+import { CookingContextProvider } from '../context/cookingContext'
 import { HomePage } from './HomePage'
 
-const wrapper = (props: {children: JSX.Element}) => (<BrowserRouter>{props.children}</BrowserRouter>)
+const wrapper = (props: {children: JSX.Element}) => (<BrowserRouter><CookingContextProvider>{props.children}</CookingContextProvider></BrowserRouter>)
 describe('the homepage', () => {
   test('renders the recipe table', async () => {
     render(<HomePage />, { wrapper })
@@ -24,8 +25,10 @@ describe('the homepage', () => {
     const filterBox = await screen.findByRole('textbox')
     const rows = await screen.findAllByRole('row')
     expect(rows).toHaveLength(4)
-    await userEvent.type(filterBox, 'Griess')
+    await userEvent.type(filterBox, 'ü')
     screen.logTestingPlaygroundURL()
-    await waitFor(() => expect(rows).toHaveLength(2))    
+    await waitFor(async () => {
+      expect((await screen.findAllByRole('row'))).toHaveLength(2)
+    })    
   })
 })
